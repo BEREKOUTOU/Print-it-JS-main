@@ -28,6 +28,7 @@ const dotsArray = Array.from(dots.children);
 const slide = (index) => {
     // Mettre à jour l'image, le texte et le point actuel
     bannerImg.src = `assets/images/slideshow/${slides[index].image}`;
+    // Mettre à jour le texte
     bannerText.innerHTML = slides[index].tagLine;
     // Mettre à jour le point actuel
     dotsArray.forEach((dot, i) => {
@@ -35,10 +36,11 @@ const slide = (index) => {
     });
     dotsArray[index].classList.add("active");
 };
-// Initialiser la diapositive
+// Initialiser la diapositive suivante
 const nextSlide = () => {
-    // Changer de diapositive
+    // Trouver l'index de la diapositive actuelle et changer la diapositive suivante
     let currentSlide = dotsArray.findIndex((dot) => dot.classList.contains("active"));
+    // Si la diapositive actuelle est la dernière, revenir à la première
     if (currentSlide === slides.length - 1) {
         currentSlide = 0;
     } else {
@@ -46,9 +48,9 @@ const nextSlide = () => {
     }
     slide(currentSlide);
 };
-// Initialiser la diapositive
+// Initialiser la diapositive précedente
 const prevSlide = () => {
-    // Changer de diapositive
+    // Trouver l'index de la diapositive actuelle et changer la diapositive précedente
     let currentSlide = dotsArray.findIndex((dot) => dot.classList.contains("active"));
     if (currentSlide === 0) {
         currentSlide = slides.length - 1;
@@ -57,11 +59,21 @@ const prevSlide = () => {
     }
     slide(currentSlide);
 };
-
+// Initialiser la diapositive suivante au clic
 arrowRight.addEventListener("click", nextSlide);
+// Initialiser la diapositive précedente au clic
 arrowLeft.addEventListener("click", prevSlide);
+// Initialiser la diapositive suivante au clavier
+document.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowRight") {
+        nextSlide();
+    } else if (e.key === "ArrowLeft") {
+        prevSlide();
+    }
+})
+// Initialiser la diapositive au clic sur les points
 dotsArray.forEach((dot, i) => {
     dot.addEventListener("click", () => {
         slide(i);
     });
-}); 
+}); // Initialiser la diapositive   
