@@ -37,6 +37,7 @@ const slide = (index) => {
 };
 // Initialiser la diapositive
 const nextSlide = () => {
+    // Changer de diapositive
     let currentSlide = dotsArray.findIndex((dot) => dot.classList.contains("active"));
     if (currentSlide === slides.length - 1) {
         currentSlide = 0;
@@ -45,8 +46,9 @@ const nextSlide = () => {
     }
     slide(currentSlide);
 };
-
+// Initialiser la diapositive
 const prevSlide = () => {
+    // Changer de diapositive
     let currentSlide = dotsArray.findIndex((dot) => dot.classList.contains("active"));
     if (currentSlide === 0) {
         currentSlide = slides.length - 1;
@@ -62,4 +64,4 @@ dotsArray.forEach((dot, i) => {
     dot.addEventListener("click", () => {
         slide(i);
     });
-}); // Start slide show
+}); 
