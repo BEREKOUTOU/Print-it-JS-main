@@ -24,6 +24,7 @@ const arrowLeft = banner.querySelector(".arrow_left");
 const arrowRight = banner.querySelector(".arrow_right");
 const dots = banner.querySelector(".dots");
 const dotsArray = Array.from(dots.children);
+
 // Initialiser la diapositive
 const slide = (index) => {
     // Mettre à jour l'image, le texte et le point actuel
