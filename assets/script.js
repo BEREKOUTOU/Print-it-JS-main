@@ -23,10 +23,10 @@ const bannerText = banner.querySelector("p");
 const arrowLeft = banner.querySelector(".arrow_left");
 const arrowRight = banner.querySelector(".arrow_right");
 const dots = banner.querySelector(".dots");
-const dotsArray = Array.from(dots.children);
+let dotsArray = Array.from(dots.children);
 
 // Initialiser la diapositive
-const slide = (index) => {
+function slide(index)  {
     // Mettre à jour l'image, le texte et le point actuel
     bannerImg.src = `assets/images/slideshow/${slides[index].image}`;
     // Mettre à jour le texte
@@ -34,8 +34,10 @@ const slide = (index) => {
     // Mettre à jour le point actuel
     dotsArray.forEach((dot, i) => {
         dot.classList.remove("active");
+        if (i === index) {
+            dot.classList.add("active");
+        }
     });
-    dotsArray[index].classList.add("active");
 };
 // Initialiser la diapositive suivante
 const nextSlide = () => {
@@ -72,9 +74,19 @@ document.addEventListener("keydown", (e) => {
         prevSlide();
     }
 })
-// Initialiser la diapositive au clic sur les points
-dotsArray.forEach((dot, i) => {
-    dot.addEventListener("click", () => {
-        slide(i);
+// Initialiser la diapositive au clic sur les points   
+function init(){
+    slides.forEach((_, i) => {
+        const dot = document.createElement("span")
+        dot.classList.add("dot")
+        if (i===0) { 
+            dot.classList.add("active")
+        }
+        dot.addEventListener("click", () => {
+            slide(i);
+        });
+        dots.appendChild(dot)
     });
-}); // Initialiser la diapositive   
+     dotsArray = Array.from(dots.children);
+}
+init() // Initialiser la diapositive   
