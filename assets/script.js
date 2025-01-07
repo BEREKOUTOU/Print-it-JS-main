@@ -89,8 +89,4 @@ function init(){
     });
      dotsArray = Array.from(dots.children);
 }
-<<<<<<< HEAD
-init() // Initial
-=======
 init() // Initialiser la diapositive   
->>>>>>> cd11c51f080fc6096f6017a21a5de33953f1a9b7
